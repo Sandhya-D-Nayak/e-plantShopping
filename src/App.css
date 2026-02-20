@@ -44,3 +44,38 @@ img {
   object-fit: cover;
   border-radius: 10px;
 }
+.landing-container {
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-align: center;
+}
+
+.landing-container h1 {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.landing-container p {
+  font-size: 20px;
+  margin: 15px 0;
+}
+
+.landing-container button {
+  padding: 12px 25px;
+  font-size: 18px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

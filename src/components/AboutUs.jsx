@@ -1,18 +1,13 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function AboutUs() {
+  const navigate = useNavigate();
+
   return (
-    <div className="landing">
-      <div className="landing-content">
-        <h1>Paradise Nursery</h1>
-        <p>
-          We provide beautiful indoor plants to make your home fresh and
-          vibrant.
-        </p>
-        <Link to="/plants">
-          <button>Get Started</button>
-        </Link>
-      </div>
+    <div className="landing-container">
+      <h1>Paradise Nursery</h1>
+      <p>Your one-stop shop for beautiful indoor plants.</p>
+      <button onClick={() => navigate("/plants")}>Get Started</button>
     </div>
   );
 }

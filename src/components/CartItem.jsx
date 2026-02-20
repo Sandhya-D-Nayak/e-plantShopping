@@ -1,9 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import {
-  increaseQuantity,
-  decreaseQuantity,
-  removeItem,
-} from "../redux/CartSlice";
+import { updateQuantity, removeItem } from "../redux/CartSlice";
 import { Link } from "react-router-dom";
 
 function CartItem() {
@@ -15,6 +11,26 @@ function CartItem() {
     0,
   );
 
+  const handleIncrease = (item) => {
+    dispatch(
+      updateQuantity({
+        id: item.id,
+        quantity: item.quantity + 1,
+      }),
+    );
+  };
+
+  const handleDecrease = (item) => {
+    if (item.quantity > 1) {
+      dispatch(
+        updateQuantity({
+          id: item.id,
+          quantity: item.quantity - 1,
+        }),
+      );
+    }
+  };
+
   return (
     <div>
       <h2>Your Cart</h2>
@@ -22,14 +38,14 @@ function CartItem() {
 
       {cartItems.map((item) => (
         <div key={item.id}>
-          <img src={item.image} alt={item.name} />
+          <img src={item.image} alt={item.name} width="120" />
           <h4>{item.name}</h4>
           <p>Unit Price: ${item.price}</p>
           <p>Total: ${item.price * item.quantity}</p>
 
-          <button onClick={() => dispatch(decreaseQuantity(item.id))}>-</button>
-          {item.quantity}
-          <button onClick={() => dispatch(increaseQuantity(item.id))}>+</button>
+          <button onClick={() => handleDecrease(item)}>-</button>
+          <span style={{ margin: "0 10px" }}>{item.quantity}</span>
+          <button onClick={() => handleIncrease(item)}>+</button>
 
           <button onClick={() => dispatch(removeItem(item.id))}>Delete</button>
 

@@ -1,6 +1,11 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import { useSelector } from "react-redux";
-import AboutUs from "./components/AboutUs";
 import ProductList from "./components/ProductList";
 import CartItem from "./components/CartItem";
 import "./App.css";
@@ -11,7 +16,7 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <h2>Paradise Nursery</h2>
+      <h2>e-plantShopping</h2>
       <div>
         <Link to="/">Home</Link>
         <Link to="/plants">Plants</Link>
@@ -21,12 +26,24 @@ function Navbar() {
   );
 }
 
+function LandingPage() {
+  const navigate = useNavigate();
+
+  return (
+    <div className="landing-container">
+      <h1>Paradise Nursery</h1>
+      <p>Your one-stop shop for beautiful indoor plants.</p>
+      <button onClick={() => navigate("/plants")}>Get Started</button>
+    </div>
+  );
+}
+
 function App() {
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<AboutUs />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/plants" element={<ProductList />} />
         <Route path="/cart" element={<CartItem />} />
       </Routes>
